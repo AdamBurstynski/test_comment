@@ -2,7 +2,6 @@ name: Test buid now comment build
 
 on: 
   pull_request:
-    branches: [main]
     types: [opened]
   issue_comment:
     types: [created]
