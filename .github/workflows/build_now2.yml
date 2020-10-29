@@ -1,4 +1,4 @@
-name: Test build now comment build
+name: Test build now comment build jr.
 
 on: 
   pull_request:
@@ -8,10 +8,8 @@ on:
     types: [created]
 
 jobs:
-  comment_check:
+  comment_check2:
     runs-on: ubuntu-latest
-    outputs:
-      triggered: ${{ steps.check.outputs.triggered }}
     steps:
       - uses: khan/pull-request-comment-trigger@master
         id: check
@@ -20,10 +18,6 @@ jobs:
       - name: Fail
         if: ${{ steps.check.outputs.triggered == 'false'}}
         run: exit 1
-  post_comment_check:
-    runs-on: ubuntu-latest
-    needs: comment_check
-    if: ${{ needs.comment_check.outputs.triggered == 'true' }}
-    steps:
       - name: Test
+        if: ${{ steps.check.outputs.triggered }}
         run: echo "I DID IT!"
